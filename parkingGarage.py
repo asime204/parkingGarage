@@ -3,6 +3,7 @@ class ParkingGarage:
         self.tickets = [{"paid": False} for i in range(size)]
         self.parkingSpaces = [{} for i in range(size)]
         self.currentTicket = {}
+        self.paidTicket = []
 
     def take_ticket(self):
         if self.tickets:
@@ -13,7 +14,10 @@ class ParkingGarage:
         payment = input("Please insert cash here: ")
         if payment:
             print("ticket has been paid leave within 15 minutes or we will tow your car!")
-            self.currentTicket["paid"] = True
+            if self.currentTicket["paid"] == False:
+                self.currentTicket["paid"] = True
+            else:
+                    self.paidTicket.append({"paid": True})
 
     def leaveGarage(self):
          if self.currentTicket:               
@@ -21,13 +25,19 @@ class ParkingGarage:
                 print("Thank you for your money please come again!")
                 self.parkingSpaces.append({})
                 self.tickets.append({"paid": False})
-                self.currentTicket = {}
+                if self.paidTicket:
+                    self.currentTicket = self.paidTicket.pop()
+                else:
+                    self.currentTicket = {"paid": False}
             else:
                 print("You are broke cough some money up before you leave!")
                 self.payForParking()
                 self.parkingSpaces.append({})
                 self.tickets.append({"paid": False})
-                self.currentTicket = {}
+                if self.paidTicket:
+                    self.currentTicket = self.paidTicket.pop()
+                else:
+                    self.currentTicket = {"paid": False}
                 print("Thank you for your money please come again!")
                 
     def printStatus(self):
