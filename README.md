@@ -47,3 +47,7 @@ When the project is completed, commit the final changes, sync all pull requests,
 
 ###### URIEL created payforParking and leaveGarage methods
 
+###### TODD created playGarage function and printStatus method
+
+##### Everyone participated in debugging and consolidating code
+
