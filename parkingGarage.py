@@ -29,19 +29,26 @@ class ParkingGarage:
                 self.tickets.append({"paid": False})
                 self.currentTicket = {}
                 print("Thank you for your money please come again!")
+                
+    def printStatus(self):
+        print(f"Tickets: {self.tickets}, Spaces: {self.parkingSpaces}, CurrentTicket: {self.currentTicket}")
+                
+def playGarage():
+    size = int(input("How many spaces in your garage? "))
+    myGarage = ParkingGarage(size)
+    playing = True
+    
+    while playing == True:
+        choice = input("Please enter 'T' to take ticket, 'P' to pay, 'L' to leave garage, 'S' to print status, or 'Q' to quit: ").lower()
+        if choice == 't':
+            myGarage.take_ticket()
+        elif choice == 'p':
+            myGarage.payForParking()
+        elif choice == 'l':
+            myGarage.leaveGarage()
+        elif choice == 's':
+            myGarage.printStatus()
+        elif choice == 'q':
+            playing = False
         
-        
-
-
-myGarage = ParkingGarage(5)
-# myGarage.take_ticket()
-# myGarage.take_ticket()
-# myGarage.take_ticket()
-# myGarage.take_ticket()
-# myGarage.take_ticket()
-# myGarage.take_ticket()
-myGarage.payForParking()
-myGarage.leaveGarage()
-print(myGarage.currentTicket)
-
-print(myGarage.tickets)
+playGarage()
