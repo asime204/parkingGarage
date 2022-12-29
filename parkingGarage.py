@@ -10,11 +10,38 @@ class ParkingGarage:
             self.parkingSpaces.pop()
 
     def payForParking(self):
-        pass
+        payment = input("Please insert cash here: ")
+        if payment:
+            print("ticket has been paid leave within 15 minutes or we will tow your car!")
+            self.currentTicket["paid"] = True
 
     def leaveGarage(self):
-        pass
+         if self.currentTicket:               
+            if self.currentTicket["paid"] == True:
+                print("Thank you for your money please come again!")
+                self.parkingSpaces.append({})
+                self.tickets.append({"paid": False})
+                self.currentTicket = {}
+            else:
+                print("You are broke cough some money up before you leave!")
+                self.payForParking()
+                self.parkingSpaces.append({})
+                self.tickets.append({"paid": False})
+                self.currentTicket = {}
+                print("Thank you for your money please come again!")
+        
+        
 
-myGarage = ParkingGarage(3)
+
+myGarage = ParkingGarage(5)
+# myGarage.take_ticket()
+# myGarage.take_ticket()
+# myGarage.take_ticket()
+# myGarage.take_ticket()
+# myGarage.take_ticket()
+# myGarage.take_ticket()
+myGarage.payForParking()
+myGarage.leaveGarage()
+print(myGarage.currentTicket)
 
 print(myGarage.tickets)
